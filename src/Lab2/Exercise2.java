@@ -3,42 +3,30 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Exercise2 {
-
-	public static void main(String[] args) {
-		Scanner sc=new Scanner(System.in);
-		int n=sc.nextInt();
-		String arr[]=new String[n];
-		for(int i=0;i<n;i++) {
-			arr[i]=sc.next();
+	public static String sortString(char n[]) {
+		for(int i=0;i<n.length;i++) {
+			for(int j=i+1;j<n.length;j++) {
+				if(n[i]>n[j]) {
+					char temp=n[i];
+					n[i]=n[j];
+					n[j]=temp;
+				}
+			}
 		}
-		sc.close();
-		sortStrings(arr);
+		for(int i=0;i<n.length/2;i++) {
+			n[i]=Character.toUpperCase(n[i]);
+		}
+		return String.valueOf(n);
+		
 	}
 
-	private static void sortStrings(String[] arr) {
-		
-		Arrays.sort(arr);
-		if(arr.length%2==0) {
-			for(int i=0;i<arr.length;i++) {
-				if(i<(arr.length/2)) {
-					arr[i]=arr[i].toUpperCase();
-				}
-				else {
-					arr[i]=arr[i].toLowerCase();
-				}
-			}
-		}
-		else {
-			for(int i=0;i<arr.length;i++) {
-				if(i<(arr.length/2)+1) {
-					arr[i]=arr[i].toUpperCase();
-				}
-				else {
-					arr[i]=arr[i].toLowerCase();
-				}
-			}
-		}
-		System.out.println(Arrays.toString(arr));
+
+	public static void main(String[] args) {
+		String str=new String("HeLloDasH");
+		char[] ch=str.toCharArray();
+		String str2=sortString(ch);
+		System.out.println(str2);
+
 	}
 
 }
